@@ -5,17 +5,17 @@
 @Software: PyCharm
 """
 
-
+import redis
 class Config(object):
     """
     配置信息
     """
 
-    SECRET_KET = 'XHSOI*Y9dfs9cshd9'
+    SECRET_KET = '3\xdb<Ue!\x8e/\xf4\x9b&.\x15\x10\x80-\x88?o`\xac\xac\x85\x8c'
 
     # 数据库
-    SQLAlchemy_DATABASE_URI = 'mysql://tarena:123456@127.0.0.1:3306/ihome_python04'
-    SQLAlchemy_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@127.0.0.1:3306/ihome_python04'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     # redis
     REDIS_HOST = '127.0.0.1'
