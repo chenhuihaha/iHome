@@ -11,6 +11,9 @@ from flask_session import Session
 from flask_wtf import CSRFProtect
 from ihome import api_1_0
 import pymysql
+import logging
+from logging.handlers import RotatingFileHandler
+
 pymysql.install_as_MySQLdb()
 
 import redis
@@ -20,6 +23,26 @@ db = SQLAlchemy()
 
 # 创建redis连接对象
 redis_store = None
+
+# 为flask补充csrf的防护机制
+csrf = CSRFProtect()
+
+# 打印的信息写到日志文件中
+logging.error('')  # 错误级别
+logging.warn('')  # 警告级别
+logging.info('')  # 消息提示级别
+logging.debug('')  # 调试级别
+
+# 设置日志的记录等级
+logging.basicConfig(level=logging.WARN)  # 调试警告级别
+# 创建日志记录器，指明日志保存的路径、每个日志文件的最大大小，保存日志文件的个数上限
+file_log_handler = RotatingFileHandler('logs/log', maxBytes=1024 * 1024 * 100, backupCount=10)
+# 创建日志记录的格式
+formatter = logging.Formatter('%(levelname)s % (filename)s:%(lineno)d %(message)s')
+# 为刚创建的日志记录器设置日志记录格式
+file_log_handler.setFormatter(formatter)
+# 为全局的日志工具对象（flask app使用的）添加日志记录器
+logging.getLogger().addHandler(file_log_handler)
 
 
 # 工厂模式
@@ -52,5 +75,3 @@ def create_app(config_name):
     app.register_blueprint(api_1_0.api, url_prefix='/api/v1.0')
 
     return app
-
-
