@@ -166,9 +166,9 @@ class Order(BaseModel, db.Model):
             'CANCELED',  # 已取消
             'REJECTED'  # 已拒单
         ),
-        default='WAIT_ACCEPT', index=True)
+        default='WAIT_ACCEPT', index=True) # 指明在mysql数据库中该字段添加索引，增快查询速度
     comment = db.Column(db.Text)  # 订单的评论消息或者拒单的原因
-    trade_no = db.Column(db.String(128))  # 支付交易编号
+    trade_no = db.Column(db.String(128))  # 支付交易流水号
 
     def to_dict(self):
         """将订单信息转换为字典数据"""

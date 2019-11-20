@@ -24,3 +24,7 @@ HOUSE_DETAIL_COMMENT_DISPLAY_COUNTS = 30
 # 房屋详情页面数据redis缓存时间，单位：秒
 HOUSE_DETAIL_REDIS_EXPIRE_SECOND = 7200
 
+#　支付宝的网关地址（支付地址域名）
+
+ALIPAY_URL_PREFIX = "https://openapi.alipay.com/gateway.do?"
+
